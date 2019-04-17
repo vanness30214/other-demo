@@ -2,104 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <style>
-        .content_c {
-
-            width: 100%;
-            text-align: center;
-            display: flex;
-        }
-        .content_c span{
-            border: 1px solid black;
-            width: 100%;
-            display: inline-block;
-
-        }
-         .c_span1 {
-            background: #89e427;
-        }
-        .c_span2 {
-            background: #54FFFF;
-        }
-        .c_span3 {
-            background: #e87575;
-        }
-    </style>
+    <title>计算涨跌庄家成本</title>
+    <!--    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+    <script language="javascript" src="js/jquery-1.4.4.min.js"></script>
+    <script language="javascript" src="js/jquery.jqprint-0.3.js"></script>
+    <script language="javascript" src="js/sum.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
 <main>
     <div>
-        <div class="cont_t"><span>输入收盘价</span><input type="text" id="start_num" ><span>输入成本价</span><input type="text" id="cb_num">
-            <input type="range" id="start_bfb" value="0" min="0" max="10" onchange="range_change()"><span id="range_val">1</span><span>%</span>
+        <div class="cont_t"><span>输入收盘价</span><input type="text" id="start_num"><span>输入成本价</span><input type="text"
+                                                                                                         id="cb_num">
+            <input type="range" id="start_bfb" value="0" min="0" max="10" onchange="range_change()"><span
+                    id="range_val">1</span><span>%</span>
+            <input type="button" onclick="aa()" value="打印"/>
         </div>
-        <div class="content" id="bfb_c">
 
 
+        <div class="content" id="bfb_c"></div>
+        <div id="printf">
+            <div class="header">
+
+            </div>
+            <div class="content" id="printf1"></div>
+            <div class="footer"></div>
+            <div class="content" id="printf2"></div>
 
         </div>
+
+
     </div>
 
 </main>
 </body>
 </html>
 <script>
-    function js_css() {
-        $(".content_c span").eq(1);
-        console.log($(".content_c span").eq(1));
+
+
+    new $CountSum();
+    function aa() {
+        $("#printf").jqprint();
     }
 
-    function range_change() {
-        var a1=$("#start_bfb").val();
-        $("#range_val").text(a1);
-       if($("#start_num").val()!=""){
-           sum();
-       }
-    }
-function sum() {
-    var a1=$("#start_num").val();
-    var a2=$("#start_bfb").val();
-    $("#bfb_c").html("");
-    $("#bfb_c").append(' <div class="content_c"> <span class="c_span1">下跌价格</span> <span class="c_span2_1">百分比</span><span class="c_span2">庄家成本价</span><span class="c_span3">上升价格</span> <span c_span2>百分比</span> </div>')
-    var a3=a1/100//一个百分比
-    var bfb=[];
-    for (i=1;i<=a2;i++){
-      bfb.push((a3*i).toFixed(5).substr(0,6));
-        // console.log( (a3*i).toFixed(5).substr(0,6));
-    }
-    for(b=0;b<a2;b++){
-
-       var jgjian= (a1-bfb[b]).toFixed(2);
-        var jgjia= ((eval((bfb[b]))+eval(a1)).toFixed(2));
-
-        // console.log((eval($("#cb_num").val())-eval(jgjia))/2+eval(jgjia));
-        var b1=(eval($("#cb_num").val())-eval(jgjian))/2;
-        var b2=Math.floor(b1 * 1000) / 1000 ;
-        var b3=(eval(b2)+eval(jgjian))
-        var chenbeng=(Math.round(b3*1000)/1000).toFixed(2);
-
-        // console.log((eval(b2)+eval(jgjian)).toFixed(3));
-        var c=b+1;
-        // // console.log((a1-bfb[b]).toFixed(2));
-        $("#bfb_c").append(' <div class="content_c"> <span class="c_span1">'+jgjian+'</span> <span class="c_span2_1" >-'+c+'%</span><span class="c_span2">'+chenbeng+'</span><span class="c_span3">'+jgjia+'</span> <span class="c_span2" >+'+c+'%</span> </div>')
-    }
-
-
-    // for (i=1;i<=10;i++){
-    //
-    //     b2=a1-b1
-    //     console.log(b2)
-    // }
-    // a1-(a3*i).toFixed(4)
-    // var a4=a2.toFixed(2);
-
-    // console.log(a2,a4);
-    js_css();
-    // $("#bfb_c .c_span1:gt(10)").css("visibility","hidden")
-    // $("#bfb_c .c_span2_1:gt(10)").css("visibility","hidden")
-    // $("#bfb_c .c_span1:gt(10)").css("visibility","hidden")
-
-}
-    //版本v2019-3-22
+    //版本v2019-4-17
 </script>
