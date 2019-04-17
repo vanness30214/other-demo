@@ -52,6 +52,7 @@
         printf1.innerHTML = "";
         printf2.innerHTML = "";
         printf1.innerHTML = `<div class="content_c"> <span class="c_span1">下跌价格</span> <span class="c_span2_1">百分比</span><span class="c_span2">庄家成本价</span><span class="c_span3">上升价格</span> <span c_span2>百分比</span> </div>`;
+        printf2.innerHTML = `<div class="content_c"> <span class="c_span1">下跌价格</span> <span class="c_span2_1">百分比</span><span class="c_span2">庄家成本价</span><span class="c_span3">上升价格</span> <span c_span2>百分比</span> </div>`;
 
     };
     CountSum.prototype._show = function (down_price, up_price, chenben_price, xianshinum, printf1, printf2) {

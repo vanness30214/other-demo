@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>计算涨跌庄家成本</title>
-    <!--    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
-    <script language="javascript" src="js/jquery-1.4.4.min.js"></script>
-    <script language="javascript" src="js/jquery.jqprint-0.3.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!--    <script language="javascript" src="js/jquery-1.4.4.min.js"></script>-->
+    <!--    <script language="javascript" src="js/jquery.jqprint-0.3.js"></script>-->
     <script language="javascript" src="js/sum.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+
+
 </head>
 <body>
 <main>
@@ -16,31 +19,71 @@
                                                                                                          id="cb_num">
             <input type="range" id="start_bfb" value="0" min="0" max="10" onchange="range_change()"><span
                     id="range_val">1</span><span>%</span>
-            <input type="button" onclick="aa()" value="打印"/>
+            <input type="button" name='button_export' title='打印1' onclick="preview(1)" value=打印1>
         </div>
 
-
+        <!--startprint1-->
         <div id="printf">
-            <div class="header">
+
+            <div class="lan">
+                <span>资金流</span>
+            </div>
+            <div class="flex-l">
+
+                <div>
+                    <span>5日线</span>
+                    <span>10日线</span>
+                    <span>20日线</span>
+                    <span>60日线</span>
+                </div>
+                <div class="content" id="printf1"></div>
 
             </div>
-            <div class="content" id="printf1"></div>
-            <div class="footer"></div>
-            <div class="content" id="printf2"></div>
+            <div class="lan">
+                <span>资金流</span>
+            </div>
+            <div class="flex-l">
+                <div>
+                    <span>5日线</span>
+                    <span>10日线</span>
+                    <span>20日线</span>
+                    <span>60日线</span>
+                </div>
+                <div class="content" id="printf2">
+
+                </div>
+
+            </div>
+
 
         </div>
-
-
+        <!--endprint1-->
     </div>
-
 </main>
 </body>
 </html>
+<script>
+    function preview(oper) {
+        if (oper < 10) {
+            bdhtml = window.document.body.innerHTML;
+            sprnstr = "<!--startprint" + oper + "-->";
+            eprnstr = "<!--endprint" + oper + "-->";
+            prnhtml = bdhtml.substring(bdhtml.indexOf(sprnstr) + 18);
+            prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr));
+            window.document.body.innerHTML = prnhtml;
+            window.print();
+            window.document.body.innerHTML = bdhtml;
+        } else {
+            window.print();
+        }
+    }
+</script>
 <script>
 
     function range_change() {
         new $CountSum();
     }
+
     function aa() {
         $("#printf").jqprint();
     }

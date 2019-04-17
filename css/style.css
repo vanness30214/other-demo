@@ -24,18 +24,39 @@
 }
 /********************************/
 #printf2>.content_c>.c_span1 {
-    color: #89e427;
-    background: #fff;
+    background: #89e427;
 }
 #printf2>.content_c>.c_span2 {
-    color: #54FFFF;
-    background: #fff;
+    background: #54FFFF;
 }
 #printf2>.content_c>.c_span3 {
-    color: #e87575;
-    background: #fff;
+    background: #e87575;
 }
-.header{
+.lan{
     width: 100%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 45px;
+    display: flex;
 
+}
+.lan>span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-l{
+    display: flex;
+}
+.flex-l>div:nth-child(1){
+    height: 250px;
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+   justify-content: space-around;
+}
+.content{
+    height: 100%;
+    flex: 1;
 }
